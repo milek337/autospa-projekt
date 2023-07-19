@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista użytkowników</title>
+</head>
+<body>
+    <h1>Lista użytkowników</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Email</th>
+                <th>Imię</th>
+                <th>Nazwisko</th>
+                <th>Numer telefonu</th>
+                <th>Data utworzenia</th>
+                <th>Akcje</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.email }}</td>
+                <td>{{ user.first_name }}</td>
+                <td>{{ user.last_name }}</td>
+                <td>{{ user.phone_number }}</td>
+                <td>{{ user.created_at }}</td>
+                <td>
+                    <a href="{% url 'edit_user' user.id %}">Edytuj</a>
+                    <a href="{% url 'delete_user' user.id %}">Usuń</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{% url 'create_user' %}">Dodaj użytkownika</a>
+</body>
+</html>
